@@ -1,6 +1,6 @@
 def solution(T):
 
-	s = len(T)/4
+	s = len(T)//4
 	ans = None
 	temps = []
 	max_diff = None
@@ -37,3 +37,4 @@ def solution(T):
 
 print solution([-3, -14, -5, 7, 8, 42, 8, 3])
 print solution([2, -3, 3, 1, 10 ,8, 2, 5, 13, -5, 3, -18])
+print solution([2, 1, 1, 10, 2, 13, 3, -18])
