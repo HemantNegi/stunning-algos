@@ -2,7 +2,6 @@ def solution(T):
 
 	s = len(T)//4
 	ans = None
-	temps = []
 	max_diff = None
 	season_index = 0
 
