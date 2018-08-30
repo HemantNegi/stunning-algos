@@ -39,7 +39,7 @@ class BinaryTree:
         """
         remvoes the given node from tree if found
         """
-        pass
+        self.__remove(self.root, data)
 
     def find(self, data):
         """
@@ -94,6 +94,41 @@ class BinaryTree:
         else:
             return self.__find(root.right, data)
 
+    def __remove(self, root, data):
+        if root is None:
+            return root
+
+        if data < root.data:
+            root.left = self.__remove(root.left, data)
+        elif data > root.data:
+            root.right = self.__remove(root.right, data)
+        else:
+
+            if root.left and root.right:
+                node = self.__get_min_node(root.right)
+                root.data = node.data  # swap node to be deleted.
+                root.right = self.__remove(node, data)
+                return root
+
+            if root.left:
+                tmp = root.left
+                root = None
+                return tmp
+            if root.right:
+                tmp = root.right
+                root = None
+                return tmp
+
+    def __get_min_node(self, root):
+        """
+        min node will be the left most node of the tree.
+        """
+        node = root
+        while(node.left):
+            node = node.left
+        return node
+
+
     def __print_inorder(self, node):
         if node is not None:
             self.__print_inorder(node.left)
@@ -130,8 +165,12 @@ if __name__ == "__main__":
 
     print "Inorder traversal: "
     bt.print_inorder()
+    bt.remove(3)
+    print "Inorder traversal after"
+    bt.print_inorder()
+    
+    # print "Preorder traversal"
+    # bt.print_preorder()
 
-        bt.remove(5)
-
-    print "Postorder traversal"
-    bt.print_postorder()
+    # print "Postorder traversal"
+    # bt.print_postorder()
